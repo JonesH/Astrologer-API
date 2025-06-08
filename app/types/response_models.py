@@ -26,7 +26,7 @@ class PlanetModel(BaseModel):
     The model for the planets, similar to the one in the Kerykeion library.
     """
 
-    name: Planet | AxialCusps = Field(description="The name of the planet.")
+    name: Planet | AxialCusps | Houses = Field(description="The name of the planet.")
     quality: Quality = Field(description="The quality of the planet.")
     element: Element = Field(description="The element of the planet.")
     sign: Sign = Field(description="The sign in which the planet is located.")
@@ -56,8 +56,8 @@ class BirthDataModel(BaseModel):
     lat: float = Field(description="Latitude of birth.")
     tz_str: str = Field(description="Timezone of birth.")
     zodiac_type: ZodiacType = Field(description="The type of zodiac used.")
-    local_time: str = Field(description="The local time of birth.")
-    utc_time: str = Field(description="The UTC time of birth.")
+    iso_formatted_local_datetime: str = Field(description="The local time of birth.")
+    iso_formatted_utc_datetime: str = Field(description="The UTC time of birth.")
     julian_day: float = Field(description="The Julian day of birth.")
 
     # Planets
@@ -72,13 +72,14 @@ class BirthDataModel(BaseModel):
     neptune: PlanetModel = Field(description="The data of Neptune.")
     pluto: PlanetModel = Field(description="The data of Pluto.")
     chiron: PlanetModel = Field(description="The data of Chiron.")
+    mean_lilith: PlanetModel = Field(description="The data of Lilith.")
 
     # Axial Cusps
-    asc: PlanetModel = Field(description="The data of the ascendant.")
-    dsc: PlanetModel = Field(description="The data of the descendant.")
-    mc: PlanetModel = Field(description="The data of the midheaven.")
-    ic: PlanetModel = Field(description="The data of the imum coeli.")
-    
+    ascendant: PlanetModel = Field(description="The data of the ascendant.")
+    descendant: PlanetModel = Field(description="The data of the descendant.")
+    medium_coeli: PlanetModel = Field(description="The data of the midheaven.")
+    imum_coeli: PlanetModel = Field(description="The data of the imum coeli.")
+
     # Houses
     first_house: PlanetModel = Field(description="The data of the first house.")
     second_house: PlanetModel = Field(description="The data of the second house.")
