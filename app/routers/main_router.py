@@ -501,7 +501,7 @@ async def transit_aspects_data(transit_chart_request: TransitChartRequestModel, 
             content={
                 "status": "OK",
                 "data": {
-                    "subject": first_astrological_subject.model().model_dump(),
+                    "first_subject": first_astrological_subject.model().model_dump(),
                     "transit": second_astrological_subject.model().model_dump(),
                 },
                 "aspects": [aspect.model_dump() for aspect in aspects],
