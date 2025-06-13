@@ -3,11 +3,11 @@ from fastapi import APIRouter, Request
 from fastapi.responses import JSONResponse
 from logging import getLogger
 from kerykeion import (
-    AstrologicalSubject, 
-    KerykeionChartSVG, 
-    SynastryAspects, 
-    NatalAspects, 
-    RelationshipScoreFactory, 
+    AstrologicalSubject,
+    KerykeionChartSVG,
+    SynastryAspects,
+    NatalAspects,
+    RelationshipScoreFactory,
     CompositeSubjectFactory
 )
 from kerykeion.settings.config_constants import DEFAULT_ACTIVE_POINTS, DEFAULT_ACTIVE_ASPECTS
@@ -82,7 +82,7 @@ async def get_now(request: Request) -> JSONResponse:
 
     # Get current UTC time from the time API
     write_request_to_log(20, request, "Getting current astrological data")
-    
+
     logger.debug("Getting current UTC time from the time API")
     try:
         utc_datetime = get_time_from_google()
@@ -416,7 +416,7 @@ async def transit_chart(transit_chart_request: TransitChartRequestModel, request
                 "chart": svg,
                 "aspects": [aspect.model_dump() for aspect in kerykeion_chart.aspects_list],
                 "data": {
-                    "subject": first_astrological_subject.model().model_dump(),
+                    "first_subject": first_astrological_subject.model().model_dump(),
                     "transit": second_astrological_subject.model().model_dump(),
                 },
             },
